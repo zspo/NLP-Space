@@ -29,6 +29,9 @@ Text Classification
 * TransFormer
 
 ### TFCtr
+
+主要是CTR预估模型的一些算法模型实践，通过代码更深入的理解模型
+
 LR  
 GBDT  
 GBDT+LR  
