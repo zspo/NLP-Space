@@ -21,9 +21,10 @@
     * [ ] Bi-LSTM+Attention
     * [ ] TransFormer
 * 命名实体识别
-    * [ ] 
+    * [ ] BiLSTM+CRT
 * 文本匹配
-    * [ ]
+    * [ ] DSSM
+    * [ ] Siamese LSTM
 
 ### TFCtr
 
