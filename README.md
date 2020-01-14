@@ -39,5 +39,6 @@
 * [ ] Wide&Deep  
 ...
 
-### TF_Basic
-tfrecord  
+### Basic
+
+TFRecord  
