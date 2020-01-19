@@ -53,7 +53,7 @@ with tf.Session() as sess:
             sess.run(train_op, feed_dict={X: x, Y: y})
 
         if (epoch+1) % DISPALY_STEP == 0:
-            loss = sess.run(cost, feed_dict={X: train_X, Y: train_Y})
+            _, loss = sess.run([train_op, cost], feed_dict={X: train_X, Y: train_Y})
             print('Epoch: {}\tloss={:.2f}'.format(epoch, loss))
 
         # Graphic display
