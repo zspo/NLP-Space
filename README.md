@@ -48,6 +48,8 @@
     * [x] linear regression
     * [x] logitstic regression
     * [x] simple neural network
+    * [x] cnn model
+    * [ ] ...
     
 * [ ] TFRecord  
     * [ ] csv2tfrecord
