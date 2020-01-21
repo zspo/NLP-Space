@@ -8,11 +8,11 @@
 
 ### NLP
 
-文本分类、命名实体识别、命名实体消歧、关系抽取、词性标注、句法分析、文本匹配等等
+文本分类、命名实体识别、关系抽取、词性标注、句法分析、文本匹配等等
 
-* NLP
+* [ ] NLP
     * [ ] Word2Vec  
-* 文本分类
+* [ ] 文本分类
     * [ ] TextCNN
     * [ ] TextRNN
     * [ ] TextRCNN
@@ -20,10 +20,12 @@
     * [ ] LSTM
     * [ ] Bi-LSTM+Attention
     * [ ] TransFormer
-* 命名实体识别
-    * [ ] BiLSTM+CRT
-* 文本匹配
+* [ ] 命名实体识别
+    * [ ] BiLSTM+CRF
+* [ ] 文本匹配
     * [ ] DSSM
+    * [ ] ESIM
+    * [ ] DIIN
     * [ ] Siamese LSTM
 
 ### TFCtr
@@ -37,9 +39,15 @@
 * [ ] FFM  
 * [ ] DeepFM  
 * [ ] Wide&Deep  
-...
+* [ ] ...
 
 ### Basic
 
-NN_basic
-TFRecord  
+* [ ] NN_basic
+    * [x] basic tensorflow
+    * [x] linear regression
+    * [x] logitstic regression
+    * [x] simple neural network
+    
+* [ ] TFRecord  
+    * [ ] csv2tfrecord

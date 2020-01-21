@@ -3,14 +3,15 @@
 @Author: songpo.zhang
 @Description: 
 '''
+
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets('data/', one_hot=True)
 
-LEARNING_RATA = 0.01
+LEARNING_RATE = 0.01
 EPOCHS = 50
 BATCH_SIZE = 512
-DISPALY_STEP = 2
+DISPLAY_STEP = 2
 
 X = tf.placeholder(tf.float32, [None, 784])
 Y = tf.placeholder(tf.float32, [None, 10])
@@ -22,7 +23,7 @@ pred = tf.nn.softmax(tf.matmul(X, W) + b)
 
 cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(pred), reduction_indices=1))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATA)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATE)
 
 train_op = optimizer.minimize(cost)
 
@@ -39,7 +40,7 @@ with tf.Session() as sess:
 
             avg_cost += loss / total_batch
         
-        if (epoch+1) % DISPALY_STEP == 0:
+        if (epoch+1) % DISPLAY_STEP == 0:
             print('Epoch: {}\tloss={:.2f}'.format(epoch, avg_cost))
     
     # Test model

@@ -3,6 +3,11 @@
 @Author: songpo.zhang
 @Description: 
 '''
+# -*- coding: utf-8 -*-
+'''
+@Author: songpo.zhang
+@Description: 
+'''
 
 import random
 import time
@@ -10,9 +15,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-LEARNING_RATA = 0.01
+LEARNING_RATE = 0.01
 EPOCHS = 50
-DISPALY_STEP = 2
+DISPLAY_STEP = 2
 
 # prepare train datasets
 train_X = np.asarray([3.3,4.4,5.5,6.71,6.93,4.168,9.779,6.182,7.59,2.167,
@@ -36,7 +41,7 @@ pred = tf.add(tf.multiply(X, W), b)
 cost = tf.reduce_sum(tf.pow(pred - Y, 2)) / (2 * n_samples)
 
 # optimizer
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATA)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATE)
 
 # train_op
 train_op = optimizer.minimize(cost)
@@ -52,7 +57,7 @@ with tf.Session() as sess:
         for (x, y) in zip(train_X, train_Y):
             sess.run(train_op, feed_dict={X: x, Y: y})
 
-        if (epoch+1) % DISPALY_STEP == 0:
+        if (epoch+1) % DISPLAY_STEP == 0:
             _, loss = sess.run([train_op, cost], feed_dict={X: train_X, Y: train_Y})
             print('Epoch: {}\tloss={:.2f}'.format(epoch, loss))
 

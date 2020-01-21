@@ -3,11 +3,6 @@
 @Author: songpo.zhang
 @Description: 
 '''
-# -*- coding: utf-8 -*-
-'''
-@Author: songpo.zhang
-@Description: 
-'''
 
 import tensorflow as tf
 
