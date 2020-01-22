@@ -28,18 +28,20 @@
     * [ ] DIIN
     * [ ] Siamese LSTM
 
-### TFCtr
+### RecSys
 
-主要是CTR预估模型的一些算法模型实践，通过代码更深入的理解模型
+推荐系统方向的实践
+包括CTR预估模型的一些算法模型实践
 
-* [ ] LR  
-* [ ] GBDT  
-* [ ] GBDT+LR  
-* [ ] FM  
-* [ ] FFM  
-* [ ] DeepFM  
-* [ ] Wide&Deep  
-* [ ] ...
+* [ ] TFCtr
+    * [ ] LR  
+    * [ ] GBDT  
+    * [ ] GBDT+LR  
+    * [ ] FM  
+    * [ ] FFM  
+    * [ ] DeepFM  
+    * [ ] Wide&Deep  
+    * [ ] ...
 
 ### Basic
 
