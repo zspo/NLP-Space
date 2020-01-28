@@ -5,6 +5,9 @@ __pycache__/
 .idea/
 *.zip
 data/
+checkpoints/
+input_data/
+w2v_model/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
