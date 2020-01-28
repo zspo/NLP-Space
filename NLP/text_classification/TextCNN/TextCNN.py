@@ -13,7 +13,7 @@ import tensorflow as tf
 
 class TextCNN(object):
     def __init__(self, filter_sizes, num_filters, num_classes, sequence_length, 
-                 vocab_size, embedding_size,
+                 w2v_model_embedding, vocab_size, embedding_size,
                  initializer=tf.random_normal_initializer(stddev=0.1),
                  l2_reg_lambda=0.0):
         self.filter_sizes = filter_sizes
@@ -21,6 +21,7 @@ class TextCNN(object):
         self.num_filters_total = self.num_filters * len(self.filter_sizes)
         self.num_classes = num_classes
         self.sequence_length = sequence_length
+        self.w2v_model_embedding = w2v_model_embedding
         self.vocab_size = vocab_size
         self.embedding_size = embedding_size
         self.initializer = initializer
@@ -31,9 +32,14 @@ class TextCNN(object):
         self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
         with tf.name_scope('weights'):
-            self.Embedding = tf.get_variable(name='embedding', 
-                                             shape=[self.vocab_size, self.embedding_size], 
-                                             initializer=self.initializer)
+            if self.w2v_model_embedding is None:
+                self.Embedding = tf.get_variable(name='embedding', 
+                                                shape=[self.vocab_size, self.embedding_size], 
+                                                initializer=self.initializer)
+            else:
+                self.Embedding = tf.get_variable(name='embedding',
+                                                 shape=[self.vocab_size, self.embedding_size],
+                                                 initializer=self.w2v_model_embedding)
 
         self.embedding_words = tf.nn.embedding_lookup(self.Embedding, self.input_x)
         self.sentence_embedding_expanded = tf.expand_dims(self.embedding_words, -1)
