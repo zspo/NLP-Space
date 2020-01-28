@@ -21,11 +21,12 @@ class TextCNN(object):
         self.num_filters_total = self.num_filters * len(self.filter_sizes)
         self.num_classes = num_classes
         self.sequence_length = sequence_length
-        self.w2v_model_embedding = w2v_model_embedding
+        self.w2v_model_embedding = tf.cast(w2v_model_embedding, tf.float32)
         self.vocab_size = vocab_size
         self.embedding_size = embedding_size
         self.initializer = initializer
         self.l2_reg_lambda = l2_reg_lambda
+        l2_loss = tf.constant(0.0)
 
         self.input_x = tf.placeholder(tf.int32, [None, self.sequence_length], name='input_x')
         self.input_y = tf.placeholder(tf.int32, [None, self.num_classes], name='input_y')
@@ -38,8 +39,8 @@ class TextCNN(object):
                                                 initializer=self.initializer)
             else:
                 self.Embedding = tf.get_variable(name='embedding',
-                                                 shape=[self.vocab_size, self.embedding_size],
-                                                 initializer=self.w2v_model_embedding)
+                                                 initializer=self.w2v_model_embedding,
+                                                 dtype=tf.float32)
 
         self.embedding_words = tf.nn.embedding_lookup(self.Embedding, self.input_x)
         self.sentence_embedding_expanded = tf.expand_dims(self.embedding_words, -1)
@@ -49,7 +50,7 @@ class TextCNN(object):
             with tf.variable_scope('convolution-pooling-{}'.format(i)):
                 filter = tf.get_variable(name='filter-{}'.format(filter_size),
                                          shape=[filter_size, self.embedding_size, 1, self.num_filters],
-                                         initializer=self.initializer)
+                                         initializer=self.initializer,)
                 conv = tf.nn.conv2d(self.sentence_embedding_expanded, 
                                     filter, 
                                     strides=[1, 1, 1, 1], 
@@ -67,10 +68,10 @@ class TextCNN(object):
                 pooled_outputs.append(pooled)
 
         self.h_pool = tf.concat(pooled_outputs, 3)
-        self.h_pool_flatten = tf.reshape(self.h_pool, [-1, self.num_filtes_total])
+        self.h_pool_flatten = tf.reshape(self.h_pool, [-1, self.num_filters_total])
 
         with tf.name_scope('dropout'):
-            self.h_drop = tf.nn.dropout(self.h_pool_flatten, self.keep_drop)
+            self.h_drop = tf.nn.dropout(self.h_pool_flatten, self.keep_prob)
         
         with tf.name_scope('output'):
             self.W = tf.get_variable(name='W',
@@ -78,14 +79,14 @@ class TextCNN(object):
                                      initializer=self.initializer)
             self.b = tf.get_variable(name='b', shape=[self.num_classes])
             l2_loss += tf.nn.l2_loss(b)
-            self.logits = tf.matmul(self.h_drop, W) + self.b
+            self.logits = tf.matmul(self.h_drop, self.W) + self.b
             self.predictions = tf.argmax(self.logits, 1, name='predictions')
 
         with tf.name_scope('loss'):
             losses = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=self.input_y)
-            self.loss_val = tf.reduce_mean(losses) + self.l2_reg_lambda * l2_loss
+            self.loss = tf.reduce_mean(losses) + self.l2_reg_lambda * l2_loss
 
         with tf.name_scope('accuracy'):
-            correct_preditions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
+            correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
             self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32), name='accuracy')
 
