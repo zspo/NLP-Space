@@ -16,7 +16,7 @@ class TextCNN(object):
     def __init__(self, filter_sizes, num_filters, num_classes, sequence_length, 
                  w2v_model_embedding, vocab_size, embedding_size,
                  initializer=tf.random_normal_initializer(stddev=0.1),
-                 l2_reg_lambda=0.0):
+                 l2_reg_lambda=0.001):
         self.filter_sizes = filter_sizes
         self.num_filters = num_filters
         self.num_filters_total = self.num_filters * len(self.filter_sizes)
