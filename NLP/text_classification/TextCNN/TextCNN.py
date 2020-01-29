@@ -4,8 +4,9 @@
 TextCNN
 * embedding layers
 * convolutinal layers
+* relu
 * max_pool
-* softmax layers
+* linear classifier
 '''
 
 import numpy as np
@@ -36,14 +37,14 @@ class TextCNN(object):
             if self.w2v_model_embedding is None:
                 self.Embedding = tf.get_variable(name='embedding', 
                                                 shape=[self.vocab_size, self.embedding_size], 
-                                                initializer=self.initializer)
+                                                initializer=self.initializer) # [vocab_size, embedding_size]
             else:
                 self.Embedding = tf.get_variable(name='embedding',
                                                  initializer=self.w2v_model_embedding,
                                                  dtype=tf.float32)
 
-        self.embedding_words = tf.nn.embedding_lookup(self.Embedding, self.input_x)
-        self.sentence_embedding_expanded = tf.expand_dims(self.embedding_words, -1)
+        self.embedding_words = tf.nn.embedding_lookup(self.Embedding, self.input_x) # [None, sequence_length, embedding_size]
+        self.sentence_embedding_expanded = tf.expand_dims(self.embedding_words, -1) # [None, sequence_length, embedding_size, 1]. expand dimension so meet input requirement of 2d-conv
 
         pooled_outputs = []
         for i, filter_size in enumerate(self.filter_sizes):
@@ -51,6 +52,8 @@ class TextCNN(object):
                 filter = tf.get_variable(name='filter-{}'.format(filter_size),
                                          shape=[filter_size, self.embedding_size, 1, self.num_filters],
                                          initializer=self.initializer,)
+                # Conv.Input: given an input tensor of shape `[batch, in_height, in_width, in_channels]` and a filter / kernel tensor of shape `[filter_height, filter_width, in_channels, out_channels]`
+                # Conv.Returns: A `Tensor`. Has the same type as `input`.
                 conv = tf.nn.conv2d(self.sentence_embedding_expanded, 
                                     filter, 
                                     strides=[1, 1, 1, 1], 
