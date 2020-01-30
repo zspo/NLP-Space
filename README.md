@@ -16,7 +16,7 @@
     * [x] Utils
         * [x] generate_w2v: 利用gensim训练word2vec，生成需要的词向量
         * [x] data_hepler: 读取原始数据，进行数据清洗预处理等，包括tokenizer编码，pad_sequence，根据word2index产出需要的embedding matrix，生成训练需要的训练集和验证集
-    * [ ] FastText
+    * [x] FastText
     * [x] TextCNN
     * [ ] TextRNN
     * [ ] TextRCNN
@@ -55,7 +55,7 @@
     * [x] logitstic regression
     * [x] simple neural network
     * [x] cnn model
-    * [ ] ...
+    * [x] rnn lstm model 
     
 * [ ] TFRecord  
     * [ ] csv2tfrecord
