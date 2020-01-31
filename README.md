@@ -57,5 +57,5 @@
     * [x] cnn model
     * [x] rnn lstm model 
     
-* [ ] TFRecord  
+* [ ] TF_basic  
     * [ ] csv2tfrecord
