@@ -36,8 +36,7 @@ class TextCNN(object):
         with tf.name_scope('weights'):
             if self.w2v_model_embedding is None:
                 self.Embedding = tf.get_variable(name='embedding',
-                                                shape=[self.vocab_size,
-                                                        self.embedding_size],
+                                                shape=[self.vocab_size, self.embedding_size],
                                                 initializer=self.initializer)  # [vocab_size, embedding_size]
             else:
                 self.Embedding = tf.get_variable(name='embedding',
@@ -45,8 +44,8 @@ class TextCNN(object):
                                                 dtype=tf.float32)
             
             self.W = tf.get_variable(name='W',
-                                        shape=[self.num_filters_total, self.num_classes],
-                                        initializer=self.initializer)
+                                     shape=[self.num_filters_total, self.num_classes],
+                                     initializer=self.initializer)
             self.b = tf.get_variable(name='b', shape=[self.num_classes])
     
     def _inference(self):
@@ -102,7 +101,7 @@ class TextCNN(object):
 
     def _accuracy(self):
         with tf.name_scope('accuracy'):
-            correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))
+            correct_predictions = tf.equal(tf.argmax(self.logits, 1), tf.argmax(self.input_y, 1))
             accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32), name='accuracy')
         return accuracy
 
@@ -148,8 +147,7 @@ class TextCNN(object):
 
             if os.path.exists(checkpoint_dir):
                 print("Restoring Variables from Checkpoint.")
-                saver.restore(
-                    self.sess, tf.train.latest_checkpoint(checkpoint_dir))
+                saver.restore(self.sess, tf.train.latest_checkpoint(checkpoint_dir))
             else:
                 print('Initializing Variables')
                 self.sess.run(tf.global_variables_initializer())
@@ -164,8 +162,7 @@ class TextCNN(object):
                 feed_dict = {self.input_x: batch_x,
                              self.input_y: batch_y,
                              }
-                self.sess.run([self.loss, self.accuracy,
-                               self.train_op], feed_dict)
+                self.sess.run([self.loss, self.accuracy, self.train_op], feed_dict)
                 train_step += 1
                 step += 1
 
@@ -173,15 +170,13 @@ class TextCNN(object):
                     feed_dict = {self.input_x: batch_x,
                                  self.input_y: batch_y,
                                  }
-                    train_loss, train_acc = self.sess.run(
-                        [self.loss, self.accuracy], feed_dict)
+                    train_loss, train_acc = self.sess.run([self.loss, self.accuracy], feed_dict)
 
                     if valid_x is not None:
                         feed_dict = {self.input_x: valid_x,
                                      self.input_y: valid_y,
                                      }
-                        val_loss, val_acc = self.sess.run(
-                            [self.loss, self.accuracy], feed_dict)
+                        val_loss, val_acc = self.sess.run([self.loss, self.accuracy], feed_dict)
                         print('Epoch {}\tBatch {}\tTrain Loss:{:.4f}\tTrain Acc:{:.4f}\tValid Loss:{:.4f}\tValid Acc:{:.4f}'.format(
                             epoch, step, train_loss, train_acc, val_loss, val_acc))
                     else:
@@ -191,8 +186,7 @@ class TextCNN(object):
                 if checkpoint_dir:
                     if train_step % 50 == 0:
                         print("Going to save model..")
-                        saver.save(self.sess, checkpoint_prefix,
-                                   global_step=train_step)
+                        saver.save(self.sess, checkpoint_prefix, global_step=train_step)
 
     def predict(self, x, batch_size=None, verbose=0, checkpoint_dir=None):
         predict_scores = []
@@ -211,8 +205,7 @@ class TextCNN(object):
             predict_scores = sess.run(self.logits, feed_dict={self.input_x: x})
         else:
             for batch_x in self._next_batch(x, batch_size=batch_size):
-                batch_result = sess.run(self.logits, feed_dict={
-                                        self.input_x: batch_x})
+                batch_result = sess.run(self.logits, feed_dict={self.input_x: batch_x})
                 predict_scores += batch_result.tolist()
 
         return np.array(predict_scores)

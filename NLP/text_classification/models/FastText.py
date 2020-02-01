@@ -118,8 +118,8 @@ class FastText(object):
             step = 0
             for batch_x, batch_y in self._next_batch(x, y, batch_size=batch_size):
                 feed_dict = {self.input_x: batch_x,
-                            self.input_y: batch_y,
-                            }
+                             self.input_y: batch_y,
+                             }
                 self.sess.run([self.loss, self.accuracy, self.train_op], feed_dict)
                 train_step += 1
                 step += 1
