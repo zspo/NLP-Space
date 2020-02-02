@@ -19,11 +19,13 @@ class FastText(TextClassifierBaseModel):
         self._initialize_embedding()
         self._initialize_weights()
         self.logits = self._inference()
+        print(self.logits)
 
     def _inference(self):
         sentence_embedding = tf.nn.embedding_lookup(self.Embedding, self.input_x)
 
         self.sentence_embedding = tf.reduce_mean(sentence_embedding, axis=1) # [None, self.embedding_size]
 
-        logits = tf.matmul(self.sentence_embedding, self.W) + self.b
+        with tf.name_scope('output'):
+            logits = tf.matmul(self.sentence_embedding, self.W) + self.b
         return logits

@@ -66,7 +66,8 @@ model.fit(train_x, train_y,
           epochs=2,
           verbose=1,
           valid_x=valid_x,
-          valid_y=valid_y,)
+          valid_y=valid_y,
+          checkpoint_dir=FLAGS.checkpoint_dir)
 predict_scores = model.predict(train_x)
 print(predict_scores[:5])
 

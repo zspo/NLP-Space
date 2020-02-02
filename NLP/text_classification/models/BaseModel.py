@@ -49,7 +49,8 @@ class TextClassifierBaseModel(object):
 
         self.sentence_embedding = tf.reduce_mean(sentence_embedding, axis=1) # [None, self.embedding_size]
 
-        logits = tf.matmul(self.sentence_embedding, self.W) + self.b
+        with tf.name_scope('output'):
+            logits = tf.matmul(self.sentence_embedding, self.W) + self.b
         return logits
 
     def _loss(self):
