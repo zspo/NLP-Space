@@ -24,10 +24,7 @@ class TextClassifierBaseModel(object):
         self.input_x = tf.placeholder(tf.int32, [None, self.sequence_length], name='input_x')
         self.input_y = tf.placeholder(tf.int32, [None, self.num_classes], name='label')
 
-
         self.logits = None
-        self.loss = None
-        self.accuracy = None
 
     def _initialize_embedding(self):
         with tf.name_scope('embedding'):
@@ -71,15 +68,17 @@ class TextClassifierBaseModel(object):
 
     def compile(self, optimizer, loss, metrics=None):
         if loss == 'binary_crossentropy':
-            loss = self.loss
-        grads_and_vars = optimizer.compute_gradients(loss)
+            self.loss= self._loss()
+        if metrics == 'accuracy':
+            self.accuracy = self._accuracy()
+        grads_and_vars = optimizer.compute_gradients(self.loss)
         self.train_op = optimizer.apply_gradients(grads_and_vars)
 
     def _next_batch(self, train_x, train_y=None, epochs=1, batch_size=None, shuffle=True):
         data_size = len(train_x)
         num_batches_per_epoch = int(data_size / batch_size) + 1
         
-        for epoch in range(epochs):
+        for _ in range(epochs):
             if shuffle:
                 shuffle_indices = np.random.permutation(np.arange(data_size))
                 shuffled_data = train_x[shuffle_indices]

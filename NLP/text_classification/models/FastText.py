@@ -19,8 +19,6 @@ class FastText(TextClassifierBaseModel):
         self._initialize_embedding()
         self._initialize_weights()
         self.logits = self._inference()
-        self.loss = self._loss()
-        self.accuracy = self._accuracy()
 
     def _inference(self):
         sentence_embedding = tf.nn.embedding_lookup(self.Embedding, self.input_x)

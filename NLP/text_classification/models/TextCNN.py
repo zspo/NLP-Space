@@ -25,8 +25,6 @@ class TextCNN(TextClassifierBaseModel):
         self._initialize_embedding()
         self._initialize_weights()
         self.logits = self._inference()
-        self.loss = self._loss()
-        self.accuracy = self._accuracy()
 
     def _initialize_weights(self):
         with tf.name_scope('weights'):
