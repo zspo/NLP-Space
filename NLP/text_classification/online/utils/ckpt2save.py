@@ -38,23 +38,21 @@ def freeze_graph(ckpt_model_dir, export_path_base, model_version):
         tensor_info_x = tf.saved_model.utils.build_tensor_info(input_x) # 输入
         tensor_info_y = tf.saved_model.utils.build_tensor_info(output) # 输出
 
-        prediction_signature = (tf.saved_model.signature_def_utils.build_signature_def(
-                                inputs={'x': tensor_info_x},
-                                outputs={'y': tensor_info_y},
-                                method_name=tf.saved_model.signature_constants.PREDICT_METHOD_NAME))
+        prediction_signature = tf.saved_model.signature_def_utils.build_signature_def(inputs={'x': tensor_info_x},
+                                                                                      outputs={'y': tensor_info_y},
+                                                                                      method_name=tf.saved_model.signature_constants.PREDICT_METHOD_NAME
+                                                                                      )
 
         legacy_init_op = tf.group(tf.tables_initializer(), name='legacy_init_op')
         builder.add_meta_graph_and_variables(sess, 
-                                            [tf.saved_model.tag_constants.SERVING],
-                                            signature_def_map={
-                                                'predict_images':prediction_signature,
-                                                            },
-                                            legacy_init_op=legacy_init_op)
+                                             [tf.saved_model.tag_constants.SERVING],
+                                             signature_def_map={'predictions': prediction_signature},
+                                             legacy_init_op=legacy_init_op)
 
     builder.save()
 
     print('Done exporting!') 
  
-input_checkpoint='./model_save/checkpoints/'
-out_pb_path='./model_save/save_model/'
+input_checkpoint='text_classification/examples/model_save/checkpoints/'
+out_pb_path='text_classification/online/save_model/'
 freeze_graph(input_checkpoint, out_pb_path, 1)

@@ -23,11 +23,10 @@ def freeze_graph(ckpt_model_dir, output_graph):
     graph = tf.get_default_graph() # 获得默认的图
     
     input_graph_def = tf.get_default_graph().as_graph_def()
+
     node_names = [n.name for n  in input_graph_def.node]
     for node in node_names:
         print(node)
-
-    input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
  
     with tf.Session() as sess:
         saver.restore(sess, input_checkpoint) #恢复图并得到数据
@@ -39,6 +38,6 @@ def freeze_graph(ckpt_model_dir, output_graph):
             f.write(output_graph_def.SerializeToString()) #序列化输出
         print("%d ops in the final graph." % len(output_graph_def.node)) #得到当前图有几个操作节点
  
-input_checkpoint='./model_save/checkpoints/'
-out_pb_path='./model_save/pb_model/test_model.pb'
+input_checkpoint='text_classification/examples/model_save/checkpoints/'
+out_pb_path='text_classification/online/pb_model/'
 freeze_graph(input_checkpoint, out_pb_path)
