@@ -19,7 +19,7 @@
     * [x] BaseModel 基本的一个文本分类的类，包括模型参数初始化，embedding初始化，loss、accuracy初始化，包括compile、fit、predict等基础方法（有点儿low，先 凑合用）
     * [x] FastText
     * [x] TextCNN
-    * [ ] TextRNN
+    * [x] TextRNN
     * [ ] TextRCNN
     * [ ] HAN
     * [ ] LSTM

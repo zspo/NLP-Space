@@ -3,38 +3,46 @@
 import numpy as np
 import tensorflow as tf
 
-class TextRNN(object):
+from .BaseModel import TextClassifierBaseModel
+
+class TextRNN(TextClassifierBaseModel):
     def __init__(self, num_classes, sequence_length,
                  w2v_model_embedding, vocab_size, embedding_size,
-                 hidden_num, hidden_size,
+                 hidden_num, hidden_size, keep_prob,
                  initializer=tf.random_normal_initializer(stddev=0.1),
                  l2_reg_lambda=0.001):
-        self.num_classes = num_classes
-        self.sequence_length = sequence_length
-        self.w2v_model_embedding = tf.cast(w2v_model_embedding, tf.float32)
-        self.vocab_size = vocab_size
-        self.embedding_size = embedding_size
+        super(TextRNN, self).__init__(num_classes=num_classes, sequence_length=sequence_length,
+                                      w2v_model_embedding=w2v_model_embedding, vocab_size=vocab_size, embedding_size=embedding_size,
+                                      initializer=tf.random_normal_initializer(stddev=0.1),
+                                      l2_reg_lambda=0.001)
+
         self.hidden_num = hidden_num
         self.hidden_size = hidden_size
-        self.initializer = initializer
-        self.l2_reg_lambda = l2_reg_lambda
-        self.l2_loss = tf.constant(0.0)
+        self.keep_prob = keep_prob
 
-        self.input_x = tf.placeholder(tf.int32, [None, self.sequence_length], name='input_x')
-        self.input_y = tf.placeholder(tf.int32, [None, self.num_classes], name='input_y')
-        self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
-        self.seq_length = tf.placeholder(tf.int32, [None], name='seq_length')
+        self._initialize_embedding()
+        self._initialize_weights()
+        self.logits = self._inference()
 
-        with tf.name_scope('embedding'):
-            if self.w2v_model_embedding is None:
-                self.Embedding = tf.get_variable(name='embedding',
-                                                 shape=[self.vocab_size, self.embedding_size],
-                                                 initializer=self.initializer)
-            else:
-                self.Embedding = tf.get_variable(name='embedding',
-                                                 initializer=self.w2v_model_embedding)
+    def _initialize_weights(self):
+        with tf.name_scope('weights'):
+            self.W = tf.get_variable(name='W',
+                                     shape=[self.hidden_size, self.num_classes],
+                                     initializer=self.initializer)
+            self.b = tf.get_variable(name='b', shape=[self.num_classes])
+
+    def _inference(self):
+
         self.embedding_words = tf.nn.embedding_lookup(self.Embedding, self.input_x)
 
+        rnn_drop = self._rnn_layer()
+
+        with tf.name_scope('output'):
+            logits = tf.matmul(rnn_drop, self.W) + self.b
+        
+        return logits
+
+    def _rnn_layer(self):
         cells = []
         for _ in range(self.hidden_size):
             lstm_cell = tf.contrib.rnn.BasicLSTMCell(self.hidden_num, state_is_tuple=True)
@@ -42,9 +50,11 @@ class TextRNN(object):
             cells.append(lstm_cell)
         cell = tf.nn.rnn_cell.MultiRNNCell(cells, state_is_tuple=True)
 
-        self.embedding_words = tf.nn.dropout(self.embedding_words, self.keep_prob)
         outputs, states = tf.nn.dynamic_rnn(cell,
                                             inputs=self.embedding_words,
-                                            sequence_length=self.seq_length,
                                             dtype=tf.float32)
-        
+        outputs = tf.reduce_mean(outputs, axis=1)
+
+        with tf.name_scope('dropout'):
+            rnn_drop = tf.nn.dropout(outputs, self.keep_prob)
+        return rnn_drop
