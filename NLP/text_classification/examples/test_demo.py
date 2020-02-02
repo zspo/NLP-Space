@@ -44,23 +44,23 @@ print(embedding.dtype)
 print(maxlen)
 
 
-# model = FastText(
-#     num_classes=FLAGS.num_classes,
-#     sequence_length=maxlen,
-#     w2v_model_embedding=embedding,
-#     vocab_size=vocab_size,
-#     embedding_size=200)
+model = FastText(
+    num_classes=FLAGS.num_classes,
+    sequence_length=maxlen,
+    w2v_model_embedding=embedding,
+    vocab_size=vocab_size,
+    embedding_size=200)
 
-model = TextCNN(filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
-                num_filters=FLAGS.num_filters,
-                num_classes=FLAGS.num_classes,
-                sequence_length=maxlen,
-                w2v_model_embedding=embedding,
-                vocab_size=vocab_size,
-                embedding_size=200)
+# model = TextCNN(filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
+#                 num_filters=FLAGS.num_filters,
+#                 num_classes=FLAGS.num_classes,
+#                 sequence_length=maxlen,
+#                 w2v_model_embedding=embedding,
+#                 vocab_size=vocab_size,
+#                 embedding_size=200)
 
 optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
-model.compile(optimizer=optimizer, loss='binary_crossentropy')
+model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics='accuracy')
 model.fit(train_x, train_y,
           batch_size=128,
           epochs=2,
