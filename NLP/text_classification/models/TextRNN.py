@@ -50,11 +50,10 @@ class TextRNN(TextClassifierBaseModel):
             cells.append(lstm_cell)
         cell = tf.nn.rnn_cell.MultiRNNCell(cells, state_is_tuple=True)
 
-        outputs, states = tf.nn.dynamic_rnn(cell,
+        outputs, _ = tf.nn.dynamic_rnn(cell,
                                             inputs=self.embedding_words,
                                             dtype=tf.float32)
-        outputs = tf.reduce_mean(outputs, axis=1)
+        outputs = tf.concat(outputs, axis=2)
+        output = tf.reduce_mean(outputs, axis=1)
 
-        with tf.name_scope('dropout'):
-            rnn_drop = tf.nn.dropout(outputs, self.keep_prob)
-        return rnn_drop
+        return output

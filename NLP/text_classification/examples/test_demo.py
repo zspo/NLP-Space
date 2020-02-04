@@ -13,6 +13,7 @@ from utils import data_helper
 from models.FastText import FastText
 from models.TextCNN import TextCNN
 from models.TextRNN import TextRNN
+from models.TextBiLSTM import TextBiLSTM
 
 FLAGS = tf.app.flags.FLAGS
 # Data params
@@ -22,8 +23,8 @@ tf.app.flags.DEFINE_string("filter_sizes", "2,3,4", "textcnn model, convolution 
 tf.app.flags.DEFINE_integer("num_filters", 2, "textcnn model, convolution filter nums")
 tf.app.flags.DEFINE_integer("num_classes", 2, "num_classes")
 tf.app.flags.DEFINE_float("keep_prob", 0.5, "Dropout keep probability (default: 0.5)")
-tf.app.flags.DEFINE_integer("hidden_num", 5, "Number of RNNCell num")
-tf.app.flags.DEFINE_integer("hidden_size", 5, "Number of RNN layers")
+tf.app.flags.DEFINE_integer("hidden_num", 2, "Number of RNNCell num")
+tf.app.flags.DEFINE_integer("hidden_size", 2, "Number of RNN layers")
 # Training params
 tf.app.flags.DEFINE_float("learning_rate", 0.01, "learning_rate (default: 0.01)")
 tf.app.flags.DEFINE_integer("epochs", 10, "Number of training epochs (default: 10)")
@@ -54,14 +55,22 @@ print(maxlen)
 #                 vocab_size=vocab_size,
 #                 embedding_size=200)
 
-model =TextRNN(num_classes=FLAGS.num_classes,
-               sequence_length=maxlen,
-               w2v_model_embedding=embedding,
-               vocab_size=vocab_size,
-               embedding_size=200,
-               hidden_num=FLAGS.hidden_num,
-               hidden_size=FLAGS.hidden_size,
-               keep_prob=0.5)
+# model =TextRNN(num_classes=FLAGS.num_classes,
+#                sequence_length=maxlen,
+#                w2v_model_embedding=embedding,
+#                vocab_size=vocab_size,
+#                embedding_size=200,
+#                hidden_num=FLAGS.hidden_num,
+#                hidden_size=FLAGS.hidden_size,
+#                keep_prob=0.5)
+
+model =TextBiLSTM(num_classes=FLAGS.num_classes,
+                  sequence_length=maxlen,
+                  w2v_model_embedding=embedding,
+                  vocab_size=vocab_size,
+                  embedding_size=200,
+                  hidden_num=FLAGS.hidden_num,
+                  keep_prob=0.5)
 
 optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
 model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics='accuracy')

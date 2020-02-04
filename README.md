@@ -20,10 +20,10 @@
     * [x] FastText
     * [x] TextCNN
     * [x] TextRNN
+    * [x] TextBiLSTM
     * [ ] TextRCNN
     * [ ] HAN
-    * [ ] LSTM
-    * [ ] Bi-LSTM+Attention
+    * [ ] BiLSTM+Attention
     * [ ] TransFormer
 * [ ] 命名实体识别
     * [ ] BiLSTM+CRF
