@@ -1,22 +1,20 @@
 # NLP-RecSys-Space
 
-**这是和自己的笔记文章配套的一系列实践代码。持续更新学习**
-
-**浮沙之上，勿筑高台**
+**Learning notes and practice in NLP and RecSys**
 
 ---
 
 ### NLP
 
-文本分类、命名实体识别、关系抽取、词性标注、句法分析、文本匹配等等
-
+* [ ] NLP Learning notes
+    * [x] CS224N
 * [ ] NLP
     * [ ] Word2Vec  
-* [ ] 文本分类
+* [ ] Text Classification
     * [x] Utils
-        * [x] generate_w2v: 利用gensim训练word2vec，生成需要的词向量
-        * [x] data_hepler: 读取原始数据，进行数据清洗预处理等，包括tokenizer编码，pad_sequence，根据word2index产出需要的embedding matrix，生成训练需要的训练集和验证集
-    * [x] BaseModel 基本的一个文本分类的类，包括模型参数初始化，embedding初始化，loss、accuracy初始化，包括compile、fit、predict等基础方法（有点儿low，先凑合用）
+        * [x] generate_w2v: `train word embedding using gensim.`
+        * [x] data_helper: `load datasets and data clearning, split to train and valid data.`
+    * [x] BaseModel: `a base model, including parameters initialization, embedding initialization, loss function and accuracy, some base api like compile, fit and predict. etc.`
     * [x] FastText
     * [x] TextCNN
     * [x] TextRNN
@@ -26,9 +24,9 @@
     * [ ] BiLSTM+Attention
     * [ ] TransFormer
     * [ ] ...
-* [ ] 命名实体识别
+* [ ] NER
     * [ ] BiLSTM+CRF
-* [ ] 文本匹配
+* [ ] Text Matching
     * [ ] DSSM
     * [ ] ESIM
     * [ ] DIIN
@@ -38,9 +36,7 @@
 
 ### RecSys
 
-推荐系统方向的实践
-包括CTR预估模型的一些算法模型实践
-
+* [ ] Learning notes
 * [ ] TFCtr
     * [ ] LR  
     * [ ] GBDT  
