@@ -3,17 +3,17 @@
 ---
 
 ### Papers
-| # | Model | Title | Resources | Remarks |
-|---|-------|----------|------------|------|
-|---|word2vec|Efficient Estimation of Word Representations in Vector Space|[[paper]](https://arxiv.org/pdf/1301.3781.pdf) [[pdf]](./papers/Efficient-Estimation-of-Word-Representations-in-Vector-Space.pdf)|------|
-|---|negative sampling|Distributed Representations of Words and Phrases and their Compositionality | [[pdf]](./papers/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)|------|
-|---|Transformer|Attention Is All You Need|[[paper]](https://arxiv.org/abs/1706.03762) [[pdf]](./papers/Attention-is-all-your-need.pdf)|------|
+| Model | Title | Resources | Remarks |
+|-------|----------|------------|------|
+|word2vec|Efficient Estimation of Word Representations in Vector Space|[[paper]](https://arxiv.org/pdf/1301.3781.pdf) [[pdf]](./papers/Efficient-Estimation-of-Word-Representations-in-Vector-Space.pdf)|------|
+|negative sampling|Distributed Representations of Words and Phrases and their Compositionality | [[pdf]](./papers/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)|------|
+|Transformer|Attention Is All You Need|[[paper]](https://arxiv.org/abs/1706.03762) [[pdf]](./papers/Attention-is-all-your-need.pdf)|------|
 
 ### Learning-Notes
-| # | Tags | Title | Resources | Remarks |
-|---|-------|----------|------------|------|
-|---|CS224N|Introduction and Word Vectors|[[note]](./notes/CS224N-2019/CS224N-01-Introduction-and-Word-Vectors.md) [[知乎]](https://zhuanlan.zhihu.com/p/147889351)|------|
-|---|word2vec|Word2Vec学习笔记（SVD、原理推导） |[[note]](./notes/Word2Vec学习笔记（CS224N笔记及相关论文学习）.md) [[知乎]](https://zhuanlan.zhihu.com/p/148779268)|------ |
+| Tags | Title | Resources | Remarks |
+|-------|----------|------------|------|
+|CS224N|Introduction and Word Vectors|[[note]](./notes/CS224N-2019/CS224N-01-Introduction-and-Word-Vectors.md) [[知乎]](https://zhuanlan.zhihu.com/p/147889351)|------|
+|word2vec|Word2Vec学习笔记（SVD、原理推导） |[[note]](./notes/Word2Vec学习笔记（CS224N笔记及相关论文学习）.md) [[知乎]](https://zhuanlan.zhihu.com/p/148779268)|------ |
 
 ### NLP
 
