@@ -1,8 +1,9 @@
 # NLP-Space
-
 ---
 
 ### Papers
+---
+
 | Model | Title | Resources | Remarks |
 |-------|----------|------------|------|
 |word2vec|Efficient Estimation of Word Representations in Vector Space|[[paper]](https://arxiv.org/pdf/1301.3781.pdf) [[pdf]](./papers/Efficient-Estimation-of-Word-Representations-in-Vector-Space.pdf)|------|
@@ -10,33 +11,42 @@
 |Transformer|Attention Is All You Need|[[paper]](https://arxiv.org/abs/1706.03762) [[pdf]](./papers/Attention-is-all-your-need.pdf)|------|
 
 ### Learning-Notes
-| Tags | Title | Resources | Remarks |
-|-------|----------|------------|------|
-|CS224N|Introduction and Word Vectors|[[note]](./notes/CS224N-2019/CS224N-01-Introduction-and-Word-Vectors.md) [[知乎]](https://zhuanlan.zhihu.com/p/147889351)|------|
-|word2vec|Word2Vec学习笔记（SVD、原理推导） |[[note]](./notes/Word2Vec学习笔记（CS224N笔记及相关论文学习）.md) [[知乎]](https://zhuanlan.zhihu.com/p/148779268)|------ |
+---
 
-### NLP
+[【斯坦福CS224N学习笔记】01-Introduction and Word Vectors](https://zhuanlan.zhihu.com/p/147889351)  
+[Word2Vec学习笔记（SVD、原理推导）](https://zhuanlan.zhihu.com/p/148779268)
 
-* [ ] NLP
-    * [ ] Word2Vec  
-* [ ] Text Classification
-    * [x] Utils
-        * [x] generate_w2v: `train word embedding using gensim.`
-        * [x] data_helper: `load datasets and data clearning, split to train and valid data.`
-    * [x] BaseModel: `a base model, including parameters initialization, embedding initialization, loss function and accuracy, some base api like compile, fit and predict. etc.`
-    * [x] FastText
-    * [x] TextCNN
-    * [x] TextRNN
-    * [x] TextBiLSTM
-    * [ ] TextRCNN
-    * [ ] HAN
-    * [ ] BiLSTM+Attention
-    * [ ] TransFormer
-    * [ ] ...
-* [ ] NER
-    * [ ] BiLSTM+CRF
-* [ ] Text Matching
-    * [ ] DSSM
-    * [ ] ESIM
-    * [ ] DIIN
-    * [ ] Siamese LSTM
+
+### NLP Model
+---
+* [ ] [Word2Vec](./NLP/word2vec)
+* [ ] Attention
+* [ ] Transformer
+
+### Text Classification
+---
+* [x] Utils
+    * [x] [generate_w2v](./text_classification/utils/generate_w2v.py): train word embedding using gensim.
+    * [x] [data_helper](./text_classification/utils/data_helper.py): load datasets and data clearning, split to train and valid data.
+* [x] [BaseModel](./text_classification/models/BaseModel.py): a base model, including parameters initialization, embedding initialization, loss function and accuracy, some base api like compile, fit and predict. etc.
+* [x] [FastText](./text_classification/models/FastText.py)
+* [x] [TextCNN](./text_classification/models/TextCNN.py)
+* [x] [TextRNN](./text_classification/models/TextRNN.py)
+* [x] [TextBiLSTM](./text_classification/models/TextBiLSTM.py)
+* [ ] [TextRCNN](./text_classification/models/TextRCNN.py)
+* [ ] HAN
+* [ ] BiLSTM+Attention
+* [ ] Transformer
+* [ ] ...
+
+### NER
+---
+* [ ] BiLSTM+CRF
+
+### Text Matching
+---
+* [ ] DSSM
+* [ ] ESIM
+* [ ] DIIN
+* [ ] Siamese LSTM
+
