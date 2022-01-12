@@ -1,5 +1,9 @@
 # NLP-Space
 ---
+* Python3.6.5
+* TensorFlow1.13.1
+* Pytorch1.4.0
+
 
 ### Papers
 ---
@@ -43,10 +47,17 @@
 ---
 * [ ] BiLSTM+CRF
 
+### Content Embedding
+---
+* [x] Bert-Whitening
+* [x] Sentence-Bert
+* [x] SimCSE
+* [ ] ESimCSE
+
 ### Text Matching
 ---
 * [ ] DSSM
-* [ ] ESIM
+* [x] ESIM
 * [ ] DIIN
 * [ ] Siamese LSTM
 
