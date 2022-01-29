@@ -1,8 +1,11 @@
-# NLP-Space
+![from kaggle](halite-banner.gif)  
+
+# **NLP-Space**
 ---
 * Python3.6.5
-* TensorFlow1.13.1
-* Pytorch1.4.0
+* TensorFlow1.14.0
+* Pytorch1.8.0
+* c++ (for inference)
 
 
 ### Papers
@@ -10,9 +13,11 @@
 
 | Model | Title | Resources | Remarks |
 |-------|----------|------------|------|
-|word2vec|Efficient Estimation of Word Representations in Vector Space|[[paper]](https://arxiv.org/pdf/1301.3781.pdf) [[pdf]](./papers/Efficient-Estimation-of-Word-Representations-in-Vector-Space.pdf)|------|
-|negative sampling|Distributed Representations of Words and Phrases and their Compositionality | [[pdf]](./papers/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)|------|
-|Transformer|Attention Is All You Need|[[paper]](https://arxiv.org/abs/1706.03762) [[pdf]](./papers/Attention-is-all-your-need.pdf)|------|
+|Word2Vec|Efficient Estimation of Word Representations in Vector Space|[[paper]](https://arxiv.org/pdf/1301.3781.pdf)|------|
+|negative sampling|Distributed Representations of Words and Phrases and their Compositionality |[[paper]](https://arxiv.org/abs/1310.4546)|------|
+|Transformer|Attention Is All You Need|[[paper]](https://arxiv.org/abs/1706.03762)|Google2017|
+|Bert|Pre-training of Deep Bidirectional Transformers for Language Understanding|[[paper](https://arxiv.org/abs/1810.04805)]|Google2018|
+
 
 ### Learning-Notes
 ---
@@ -20,12 +25,6 @@
 [【斯坦福CS224N学习笔记】01-Introduction and Word Vectors](https://zhuanlan.zhihu.com/p/147889351)  
 [Word2Vec学习笔记（SVD、原理推导）](https://zhuanlan.zhihu.com/p/148779268)
 
-
-### NLP Model
----
-* [ ] [Word2Vec](./NLP/word2vec)
-* [ ] Attention
-* [ ] Transformer
 
 ### Text Classification
 ---
@@ -46,6 +45,8 @@
 ### NER
 ---
 * [ ] BiLSTM+CRF
+* [ ] Bert+CRF
+* [ ] Bert+BiLSTM+CRF
 
 ### Content Embedding
 ---
@@ -56,8 +57,16 @@
 
 ### Text Matching
 ---
+* [ ] Siamese LSTM
 * [ ] DSSM
 * [x] ESIM
 * [ ] DIIN
-* [ ] Siamese LSTM
 
+### Text Generation
+---
+* [ ] 
+
+### Inference
+---
+* [ ] onnx (onnxruntime)
+* [ ] tensorrt
