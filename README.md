@@ -1,11 +1,11 @@
 ![from kaggle](halite-banner.gif)  
 
 # **NLP-Space**
----
+
 * Python3.6.5
 * TensorFlow1.14.0
 * Pytorch1.8.0
-* c++ (for inference)
+* C++ (for inference)
 
 
 ### Papers
