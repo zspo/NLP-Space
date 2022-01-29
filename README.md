@@ -64,9 +64,9 @@
 
 ### Text Generation
 ---
-* [ ] 
+* [ ]
 
 ### Inference
 ---
-* [ ] onnx (onnxruntime)
-* [ ] tensorrt
+* [*] ONNX (OnnxRuntime by CPP)
+* [ ] TensorRT
