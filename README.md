@@ -68,5 +68,5 @@
 
 ### Inference
 ---
-* [*] ONNX (OnnxRuntime by CPP)
+* [x] ONNX (OnnxRuntime by CPP)
 * [ ] TensorRT
