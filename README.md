@@ -1,12 +1,12 @@
-![from kaggle](halite-banner.gif)  
+<div align="center">
 
-# **NLP-Space**
+![from kaggle](halite-banner.gif)    
+<h2>NLP-Space</h2>
+<p>papers read & learning notes & some code<p/> 
 
-* Python3.6.5
-* TensorFlow1.14.0
-* Pytorch1.8.0
-* C++ (for inference)
+</div>
 
+---
 
 ### Papers
 ---
