@@ -2,14 +2,13 @@
 
 ![from kaggle](halite-banner.gif)    
 <h2>NLP-Space</h2>
-<p>papers read & learning notes & some code<p/> 
+<p>papers read & learning notes & some code</p>
 
 </div>
 
 ---
 
 ### Papers
----
 
 | Model | Title | Resources | Remarks |
 |-------|----------|------------|------|
@@ -20,14 +19,12 @@
 
 
 ### Learning-Notes
----
 
 [【斯坦福CS224N学习笔记】01-Introduction and Word Vectors](https://zhuanlan.zhihu.com/p/147889351)  
 [Word2Vec学习笔记（SVD、原理推导）](https://zhuanlan.zhihu.com/p/148779268)
 
 
 ### Text Classification
----
 * [x] Utils
     * [x] [generate_w2v](./text_classification/utils/generate_w2v.py): train word embedding using gensim.
     * [x] [data_helper](./text_classification/utils/data_helper.py): load datasets and data clearning, split to train and valid data.
@@ -43,30 +40,30 @@
 * [ ] ...
 
 ### NER
----
+
 * [ ] BiLSTM+CRF
 * [ ] Bert+CRF
 * [ ] Bert+BiLSTM+CRF
 
 ### Content Embedding
----
+
 * [x] Bert-Whitening
 * [x] Sentence-Bert
 * [x] SimCSE
 * [ ] ESimCSE
 
 ### Text Matching
----
+
 * [ ] Siamese LSTM
 * [ ] DSSM
 * [x] ESIM
 * [ ] DIIN
 
 ### Text Generation
----
+
 * [ ]
 
 ### Inference
----
+
 * [x] ONNX (OnnxRuntime by CPP)
 * [ ] TensorRT
